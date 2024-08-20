@@ -1,0 +1,22 @@
+after the .sh
+
+export VAULT_ADDR='http://34.171.254.208:8200/'
+export VAULT_TOKEN="hvs.DSfZtxzKbJBhPaGagh3OOEgP"
+vault login -address=http://34.171.254.208:8200
+
+vault auth enable kubernetes
+#kubernetes_host = External ip address of k8s = kubectl config view --minify -o jsonpath='{.clusters[0].cluster.server}'
+vault write auth/kubernetes/config \
+    token_reviewer_jwt="$(cat token.txt)" \
+    kubernetes_host="https://34.69.134.109" \
+    kubernetes_ca_cert="@ca.crt"
+
+vault policy write full-access-policy full-access-policy.hcl
+
+vault write auth/kubernetes/role/full-access-role \
+    bound_service_account_names=vault-auth \
+    bound_service_account_namespaces=default \
+    policies=full-access-policy \
+    ttl=1h
+
+ #then run buildagent.yaml   

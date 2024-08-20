@@ -1,0 +1,11 @@
+#to get ca and token:
+apiVersion: v1
+kind: Pod
+metadata:
+  name: vault-auth-pod
+spec:
+  serviceAccountName: vault-auth
+  containers:
+  - name: vault-auth-container
+    image: busybox
+    command: [ "sleep", "3600" ]  # Keep the pod running
