@@ -2,6 +2,10 @@
 # vault-env Injection enabled 
 # Vault in development mode.
 
+Pull chart:
+helm pull hashicorp/vault
+helm pull banzaicloud/vault-secrets-webhook
+
 1. Vaultsetup.sh
 line 2-6: Installing the Vault CLI to confige the vault after the helm chart installation task unsealing,enableing k8s auth , adding policy etc
 
