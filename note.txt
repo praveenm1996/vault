@@ -1,3 +1,10 @@
+Unseal process of vault
+
+ kubectl exec -it vault-0 -- vault status
+ kubectl exec -it vault-0 -- vault opertor init -n 1 -t 1
+ kubectl exec -it vault-0 -- vault operator init -n 1 -t 1
+ kubectl exec -it vault-0 -- vault operator unseal Uh25TaWN7S7c//aMlJ3esnYbMkRFS+/dNEvxO07oyUk=
+
 after the .sh
 
 export VAULT_ADDR='http://34.171.254.208:8200/'

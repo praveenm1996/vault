@@ -24,19 +24,6 @@ sleep 30
 # Not Worked kubectl get secret mysecretname -o jsonpath="{.data['ca\.crt']}"  > ca.crt
 kubectl get secret mysecretname -o jsonpath="{.data['token']}" | base64 --decode > token.txt
 ##
-TOKEN=$(cat token.txt)
-
-# Extract the header (first part)
-HEADER=$(echo "$TOKEN" | cut -d '.' -f 1)
-
-# Extract the payload (second part)
-PAYLOAD=$(echo "$TOKEN" | cut -d '.' -f 2)
-
-# Extract the signature (third part)
-SIGNATURE=$(echo "$TOKEN" | cut -d '.' -f 3)
-
-echo "$PAYLOAD" | base64 --decode > tokensplit.txt
-##
 #kubectl exec -it vault-auth-pod -- cat /var/run/secrets/kubernetes.io/serviceaccount/token > tokenin.txt
 #changed name
 kubectl exec -it vault-auth-pod -- cat /var/run/secrets/kubernetes.io/serviceaccount/ca.crt > ca.crt
