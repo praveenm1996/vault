@@ -37,7 +37,6 @@ SIGNATURE=$(echo "$TOKEN" | cut -d '.' -f 3)
 
 echo "$PAYLOAD" | base64 --decode > tokensplit.txt
 ##
-
 #kubectl exec -it vault-auth-pod -- cat /var/run/secrets/kubernetes.io/serviceaccount/token > tokenin.txt
 #changed name
 kubectl exec -it vault-auth-pod -- cat /var/run/secrets/kubernetes.io/serviceaccount/ca.crt > ca.crt
